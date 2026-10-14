@@ -1,6 +1,0 @@
-streamlit
-tensorflow-cpu
-pillow
-pandas
-numpy
-huggingface_hub
