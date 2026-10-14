@@ -1,0 +1,23 @@
+# Render Blueprint for the Node.js version.
+# The model runs in the visitor's browser, so the server needs very little memory.
+# "starter" + disk = uploaded models are kept permanently.
+# FREE VERSION: set plan to free, delete the "disk:" block, and keep your model in
+# the default-model/ folder of the repo instead (see README.md).
+services:
+  - type: web
+    name: leuknet-aml
+    runtime: node
+    plan: starter
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_VERSION
+        value: 20
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: leuknet-data
+      mountPath: /var/data
+      sizeGB: 1

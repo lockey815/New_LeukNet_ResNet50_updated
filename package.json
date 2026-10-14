@@ -1,0 +1,17 @@
+{
+  "name": "leuknet-aml",
+  "version": "1.0.0",
+  "description": "LeukNet AML detector: HTML/CSS front end, Node.js back end, TensorFlow.js model",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^5.3.0",
+    "multer": "^2.4.0"
+  }
+}
