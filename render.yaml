@@ -1,0 +1,26 @@
+# Render Blueprint. Plan "standard" = 2 GB RAM (TensorFlow needs more than 512 MB)
+# and a persistent disk so the uploaded model survives restarts and redeploys.
+# FREE VERSION: set plan to free, delete the whole "disk:" block, set DATA_DIR to /tmp/leuknet,
+# and rely on the Hugging Face backup (HF_TOKEN + HF_MODEL_REPO) for permanence.
+services:
+  - type: web
+    name: leuknet-aml
+    runtime: python
+    plan: standard
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run app.py --server.port $PORT --server.address 0.0.0.0 --server.headless true
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.8
+      - key: DATA_DIR
+        value: /var/data
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: HF_TOKEN
+        sync: false
+      - key: HF_MODEL_REPO
+        sync: false
+    disk:
+      name: leuknet-data
+      mountPath: /var/data
+      sizeGB: 2
